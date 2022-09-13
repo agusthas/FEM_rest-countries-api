@@ -1,4 +1,5 @@
 import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
+import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import { CountryWithBorders, getCountries, getCountry } from "../../lib/api";
@@ -31,11 +32,13 @@ export const getStaticProps = async ({
 };
 
 const Details = ({ country }: { country: CountryWithBorders }) => {
-  if (!country) return <div>Country not found</div>;
   return (
     <Layout>
+      <Head>
+        <title>Details | {country.name}</title>
+      </Head>
       <Link href="/">
-        <a className="inline-flex bg-white shadow-lg border px-6 py-2 gap-2 rounded-md">
+        <a className="inline-flex bg-white dark:bg-dark-blue shadow-lg border dark:border-dark-blue px-6 py-2 gap-2 rounded-sm">
           <ArrowLongLeftIcon className="h-6 w-6" />
           <span>Back</span>
         </a>
@@ -98,7 +101,7 @@ const Details = ({ country }: { country: CountryWithBorders }) => {
                   href={`/details/${border.alpha3Code}`}
                   key={border.alpha3Code}
                 >
-                  <a className="bg-white shadow-lg border px-6 py-2 rounded-md">
+                  <a className="bg-white dark:bg-dark-blue shadow-lg border dark:border-dark-blue px-6 py-1 rounded-sm lg:text-sm">
                     {border.name}
                   </a>
                 </Link>

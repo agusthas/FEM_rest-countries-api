@@ -7,6 +7,7 @@ import Select, { SelectItem } from "../components/Select";
 import { getCountries } from "../lib/api";
 import { useDebouncedState } from "@mantine/hooks";
 import { InferGetStaticPropsType } from "next";
+import Head from "next/head";
 
 const regions: SelectItem[] = [
   { name: "All" },
@@ -48,16 +49,19 @@ const Home = ({
 
   return (
     <Layout>
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-0 lg:items-center lg:justify-between">
+      <Head>
+        <title>Where in the world?</title>
+      </Head>
+      <div className="flex flex-col gap-10 lg:flex-row lg:gap-0 lg:items-center lg:justify-between text-dark-gray dark:text-very-light-gray">
         <div className="flex-1 relative shadow-md max-w-md">
           <div className="flex absolute inset-y-0 left-0 items-center pl-8 pointer-events-none">
-            <MagnifyingGlassIcon className="w-5 h-5 text-dark-gray font-bold" />
+            <MagnifyingGlassIcon className="w-5 h-5 font-bold" />
           </div>
           <input
             type="search"
             id="search"
             placeholder="Search for a country..."
-            className="block w-full rounded-md text-sm border-none p-4 pl-16 text-dark-gray placeholder-dark-gray/50 placeholder:font-semibold focus:ring-very-dark-blue-dark"
+            className="block w-full rounded-md text-sm border-none p-4 pl-16 placeholder-dark-gray/50 placeholder:font-semibold focus:ring-very-dark-blue-dark dark:bg-dark-blue dark:placeholder-very-light-gray/50"
             onChange={(e) => setSearch(e.currentTarget.value)}
           />
         </div>
